@@ -1,0 +1,130 @@
+### ============================================================
+###  API MUNDIAL 2026  ·  Archivo de pruebas (REST Client)
+###  Requiere: extension "REST Client" + servidor corriendo (npm start)
+###  Uso: haz clic en el texto gris "Send Request" que aparece
+###       encima de cada peticion.
+### ============================================================
+
+@host = http://localhost:3000
+
+
+### ------------------------------------------------------------
+### 1. SELECCIONES
+### ------------------------------------------------------------
+
+### Todas las selecciones (16)
+GET {{host}}/api/selecciones
+
+### Una seleccion por id (3 = Francia)
+GET {{host}}/api/selecciones/3
+
+### Id inexistente -> 404
+GET {{host}}/api/selecciones/99
+
+### Busqueda anidada por continente
+GET {{host}}/api/selecciones?continente=Europa
+
+### Igual pero en minuscula (mismo resultado)
+GET {{host}}/api/selecciones?continente=europa
+
+### Solo las campeonas (copas > 0)
+GET {{host}}/api/selecciones?campeon=true
+
+
+### ------------------------------------------------------------
+### 2. COPAS Y ESTADISTICAS
+### ------------------------------------------------------------
+
+### Todas las copas aplanadas (flatMap)
+GET {{host}}/api/copas
+
+### Copas de una seleccion por nombre
+GET {{host}}/api/copas/Brasil
+
+### Existe pero sin copas -> 200 con []
+GET {{host}}/api/copas/chile
+
+### No existe -> 404
+GET {{host}}/api/copas/narnia
+
+### Resumen del torneo (reduce)
+GET {{host}}/api/estadisticas
+
+
+### ------------------------------------------------------------
+### 3. SEMIFINALES Y FINAL
+###    (ejecuta primero los POST, luego los GET)
+### ------------------------------------------------------------
+
+### POST semifinal 1: Chile (2) 2 - 1 Alemania (8)
+POST {{host}}/api/worldcup/2026/semifinals/1
+Content-Type: application/json
+
+{
+  "local":  { "seleccionId": 2, "goles": 2 },
+  "visita": { "seleccionId": 8, "goles": 1 }
+}
+
+### POST semifinal 2: Argentina (9) 3 - 0 Francia (3)
+POST {{host}}/api/worldcup/2026/semifinals/2
+Content-Type: application/json
+
+{
+  "local":  { "seleccionId": 9, "goles": 3 },
+  "visita": { "seleccionId": 3, "goles": 0 }
+}
+
+### POST semifinal 5 (numero invalido) -> 400
+POST {{host}}/api/worldcup/2026/semifinals/5
+Content-Type: application/json
+
+{
+  "local":  { "seleccionId": 1, "goles": 1 },
+  "visita": { "seleccionId": 2, "goles": 0 }
+}
+
+### POST con datos faltantes -> 400
+POST {{host}}/api/worldcup/2026/semifinals/3
+Content-Type: application/json
+
+{
+  "local": { "seleccionId": 1 }
+}
+
+### GET semifinal 1 (muestra el ganador calculado)
+GET {{host}}/api/worldcup/2026/semifinals/1
+
+### GET semifinal 4 (no jugada) -> 404
+GET {{host}}/api/worldcup/2026/semifinals/4
+
+### GET todas las semifinales
+GET {{host}}/api/worldcup/2026/semifinals
+
+### POST final: Chile (2) 3 - 1 Argentina (9)
+POST {{host}}/api/worldcup/2026/final
+Content-Type: application/json
+
+{
+  "local":  { "seleccionId": 2, "goles": 3 },
+  "visita": { "seleccionId": 9, "goles": 1 }
+}
+
+### GET final (quien gano)
+GET {{host}}/api/worldcup/2026/final
+
+
+### ------------------------------------------------------------
+### 4. EXTRAS Y ERRORES
+### ------------------------------------------------------------
+
+### Tabla del grupo A ordenada por ranking FIFA
+GET {{host}}/api/grupos/A/tabla
+
+### Camino al titulo de Chile (id 2)
+GET {{host}}/api/worldcup/2026/camino/2
+
+### Copa 2026 automatica del campeon (Chile, tras ganar la final)
+GET {{host}}/api/copas/chile
+
+### Ruta inexistente -> 404 sin caer el servidor
+GET {{host}}/api/loquesea

@@ -1,0 +1,163 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "API Mundial 2026",
+  "dateExported": "2026-07-27T00:00:00.000Z",
+  "version": "1.2",
+  "folders": [
+    { "_id": "fld-01", "name": "1. Selecciones", "containerId": "", "created": "2026-07-27T00:00:00.000Z", "sortNum": 10000 },
+    { "_id": "fld-02", "name": "2. Copas y Estadisticas", "containerId": "", "created": "2026-07-27T00:00:00.000Z", "sortNum": 20000 },
+    { "_id": "fld-03", "name": "3. Semifinales y Final", "containerId": "", "created": "2026-07-27T00:00:00.000Z", "sortNum": 30000 },
+    { "_id": "fld-04", "name": "4. Extras y Errores", "containerId": "", "created": "2026-07-27T00:00:00.000Z", "sortNum": 40000 }
+  ],
+  "requests": [
+    {
+      "_id": "req-01", "colId": "col-mundial", "containerId": "fld-01",
+      "name": "GET todas las selecciones", "url": "http://localhost:3000/api/selecciones",
+      "method": "GET", "sortNum": 10000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-02", "colId": "col-mundial", "containerId": "fld-01",
+      "name": "GET seleccion por id (3 = Francia)", "url": "http://localhost:3000/api/selecciones/3",
+      "method": "GET", "sortNum": 11000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-03", "colId": "col-mundial", "containerId": "fld-01",
+      "name": "GET id inexistente (99 -> 404)", "url": "http://localhost:3000/api/selecciones/99",
+      "method": "GET", "sortNum": 12000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-04", "colId": "col-mundial", "containerId": "fld-01",
+      "name": "GET ?continente=Europa (busqueda anidada)", "url": "http://localhost:3000/api/selecciones?continente=Europa",
+      "method": "GET", "sortNum": 13000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [ { "name": "continente", "value": "Europa", "isPath": false } ], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-05", "colId": "col-mundial", "containerId": "fld-01",
+      "name": "GET ?continente=europa (minuscula, mismo resultado)", "url": "http://localhost:3000/api/selecciones?continente=europa",
+      "method": "GET", "sortNum": 14000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [ { "name": "continente", "value": "europa", "isPath": false } ], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-06", "colId": "col-mundial", "containerId": "fld-01",
+      "name": "GET ?campeon=true (solo campeonas)", "url": "http://localhost:3000/api/selecciones?campeon=true",
+      "method": "GET", "sortNum": 15000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [ { "name": "campeon", "value": "true", "isPath": false } ], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-07", "colId": "col-mundial", "containerId": "fld-02",
+      "name": "GET todas las copas (flatMap)", "url": "http://localhost:3000/api/copas",
+      "method": "GET", "sortNum": 20000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-08", "colId": "col-mundial", "containerId": "fld-02",
+      "name": "GET copas de Brasil (por nombre)", "url": "http://localhost:3000/api/copas/Brasil",
+      "method": "GET", "sortNum": 21000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-09", "colId": "col-mundial", "containerId": "fld-02",
+      "name": "GET copas de chile (existe, sin copas -> 200 [])", "url": "http://localhost:3000/api/copas/chile",
+      "method": "GET", "sortNum": 22000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-10", "colId": "col-mundial", "containerId": "fld-02",
+      "name": "GET copas de narnia (no existe -> 404)", "url": "http://localhost:3000/api/copas/narnia",
+      "method": "GET", "sortNum": 23000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-11", "colId": "col-mundial", "containerId": "fld-02",
+      "name": "GET estadisticas (reduce)", "url": "http://localhost:3000/api/estadisticas",
+      "method": "GET", "sortNum": 24000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-12", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "POST semifinal 1 (Chile 2 - 1 Alemania)", "url": "http://localhost:3000/api/worldcup/2026/semifinals/1",
+      "method": "POST", "sortNum": 30000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [ { "name": "Content-Type", "value": "application/json" } ], "params": [],
+      "body": { "type": "json", "raw": "{\n  \"local\":  { \"seleccionId\": 2, \"goles\": 2 },\n  \"visita\": { \"seleccionId\": 8, \"goles\": 1 }\n}", "form": [] }
+    },
+    {
+      "_id": "req-13", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "POST semifinal 2 (Argentina 3 - 0 Francia)", "url": "http://localhost:3000/api/worldcup/2026/semifinals/2",
+      "method": "POST", "sortNum": 31000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [ { "name": "Content-Type", "value": "application/json" } ], "params": [],
+      "body": { "type": "json", "raw": "{\n  \"local\":  { \"seleccionId\": 9, \"goles\": 3 },\n  \"visita\": { \"seleccionId\": 3, \"goles\": 0 }\n}", "form": [] }
+    },
+    {
+      "_id": "req-14", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "POST semifinal 5 (invalido -> 400)", "url": "http://localhost:3000/api/worldcup/2026/semifinals/5",
+      "method": "POST", "sortNum": 32000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [ { "name": "Content-Type", "value": "application/json" } ], "params": [],
+      "body": { "type": "json", "raw": "{\n  \"local\":  { \"seleccionId\": 1, \"goles\": 1 },\n  \"visita\": { \"seleccionId\": 2, \"goles\": 0 }\n}", "form": [] }
+    },
+    {
+      "_id": "req-15", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "POST semifinal 3 datos faltantes (-> 400)", "url": "http://localhost:3000/api/worldcup/2026/semifinals/3",
+      "method": "POST", "sortNum": 33000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [ { "name": "Content-Type", "value": "application/json" } ], "params": [],
+      "body": { "type": "json", "raw": "{\n  \"local\": { \"seleccionId\": 1 }\n}", "form": [] }
+    },
+    {
+      "_id": "req-16", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "GET semifinal 1 (con ganador)", "url": "http://localhost:3000/api/worldcup/2026/semifinals/1",
+      "method": "GET", "sortNum": 34000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-17", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "GET semifinal 4 (no jugada -> 404)", "url": "http://localhost:3000/api/worldcup/2026/semifinals/4",
+      "method": "GET", "sortNum": 35000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-18", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "GET todas las semifinales", "url": "http://localhost:3000/api/worldcup/2026/semifinals",
+      "method": "GET", "sortNum": 36000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-19", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "POST final (Chile 3 - 1 Argentina)", "url": "http://localhost:3000/api/worldcup/2026/final",
+      "method": "POST", "sortNum": 37000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [ { "name": "Content-Type", "value": "application/json" } ], "params": [],
+      "body": { "type": "json", "raw": "{\n  \"local\":  { \"seleccionId\": 2, \"goles\": 3 },\n  \"visita\": { \"seleccionId\": 9, \"goles\": 1 }\n}", "form": [] }
+    },
+    {
+      "_id": "req-20", "colId": "col-mundial", "containerId": "fld-03",
+      "name": "GET final (quien gano)", "url": "http://localhost:3000/api/worldcup/2026/final",
+      "method": "GET", "sortNum": 38000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-21", "colId": "col-mundial", "containerId": "fld-04",
+      "name": "EXTRA: tabla del grupo A (ordenada por ranking)", "url": "http://localhost:3000/api/grupos/A/tabla",
+      "method": "GET", "sortNum": 40000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-22", "colId": "col-mundial", "containerId": "fld-04",
+      "name": "EXTRA: camino al titulo de Chile (id 2)", "url": "http://localhost:3000/api/worldcup/2026/camino/2",
+      "method": "GET", "sortNum": 41000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-23", "colId": "col-mundial", "containerId": "fld-04",
+      "name": "EXTRA: copa 2026 automatica del campeon (Chile)", "url": "http://localhost:3000/api/copas/chile",
+      "method": "GET", "sortNum": 42000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    },
+    {
+      "_id": "req-24", "colId": "col-mundial", "containerId": "fld-04",
+      "name": "Ruta inexistente (-> 404 sin caer)", "url": "http://localhost:3000/api/loquesea",
+      "method": "GET", "sortNum": 43000, "created": "2026-07-27T00:00:00.000Z", "modified": "2026-07-27T00:00:00.000Z",
+      "headers": [], "params": [], "body": { "type": "none" }
+    }
+  ]
+}
